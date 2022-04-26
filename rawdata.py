@@ -1,20 +1,26 @@
 import json
+from config.devices_config import supported_devices
 
-def rawData(data):
-    data_temp = json.loads(data)
-    result = data_temp.get("result")
 
+class Data:
     data = {}
 
-    for i in result:
-        if(i.get("entity_id").startswith('sensor')):
-            data[i.get("entity_id")] = (i.get("state"), i.get("attributes"))
-        if(i.get("entity_id").startswith('switch')):
-            data[i.get("entity_id")] = (i.get("state"))
+    def __init__(self, initial_request):
+        data_temp = json.loads(initial_request)
+        result = data_temp.get("result")
 
-    return data
+        for i in result:
+            device_type = i.get("entity_id").split(".")[0]
+            if device_type in supported_devices:
+                self.data[i.get("entity_id")] = (i.get("state"), i.get("attributes"))
 
-def getIdAndState(line):
-    temp = line.split('(')[1].split(')')[0].split(',')
-    return temp[0].strip('"'), 'turn_' + temp[1].strip()
-    
+    def get_data(self):
+        return self.data
+
+    def update_data(self, received_state):
+        temp = json.loads(received_state)
+        result = temp.get("event")
+        if result is not None and result.get("event_type") == "state_changed":
+            result = result.get("data")
+            self.data[result.get("entity_id")] = (
+                result.get("new_state").get("state"), result.get("new_state").get("attributes"))

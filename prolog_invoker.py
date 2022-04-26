@@ -7,9 +7,7 @@ import make_prolog_file
 
 def invoke_prolog(Data_class, rest):
     start_time = time()
-    print(threading.get_native_id())
-    # Tõsta suit välja kuhugile
-    # Timer(5.0, invoke_prolog, args=[Data_class]).start()
+    #print(threading.get_native_id())
 
     result_file_name = "automation_results/" + strftime("%Y_%m_%d_%H_%M_%S", gmtime()) + ".txt"
     print(result_file_name)
@@ -18,8 +16,7 @@ def invoke_prolog(Data_class, rest):
 
     data = Data_class.get_data()
     # Teeb saadud HA seadmete/teenuste andmete põhjal Prolog faili, kus on lisaks kasutaja poolt tehtud automatsioonid
-    with open("automation_final.pl", 'w') as file:
-        file.write("allRules :- [init_preds, automation_rules].\n")
+    with open("prolog_files/automation_final.pl", 'w') as file:
 
         make_prolog_file.add_facts(data, file)
 
@@ -42,11 +39,12 @@ def invoke_prolog(Data_class, rest):
         predicates = make_prolog_file.get_users_rules(data, file)
 
     prolog = Prolog()
-    prolog.consult("automation_final.pl")
+    prolog.consult("prolog_files/automation_final.pl")
+    prolog.consult("prolog_files/init_preds.pl")
+    #prolog.consult("prolog_files/automation_rules.pl")
+    prolog.consult("prolog_files/multiple_rules_exec_test.pl")
 
-    for i in prolog.query("allRules."):
-        print(i)
-
+    print(predicates)
     for pred in predicates:
         res = list(prolog.query(pred))
 

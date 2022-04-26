@@ -31,3 +31,14 @@ dark_windowClosed_lightOn :-
 rule2 :-
     temperature_sensor("sensor.living_room_temperature", medium),
     climate_mode("climate.air_conditioner", heat).
+
+%  dark & !window.open -> light
+dark_windowClosed_lightOn2 :-
+    light_sensor("sensor.outside_light_density", low),
+    switch_status("switch.kitchen_window", off),
+    light_switch("light.kitchen_light_group", off).
+
+rule3 :-
+    temperature_sensor("sensor.living_room_temperature", medium),
+    climate_mode("climate.air_conditioner", off).
+

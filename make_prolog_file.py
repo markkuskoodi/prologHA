@@ -59,7 +59,8 @@ on vajalik.
 def get_users_rules(data, file):
     predicate = []
     comment = False
-    with open('automation_rules.pl', 'r') as automation:
+    with open('prolog_files/multiple_rules_exec_test.pl', 'r') as automation:
+    #with open('prolog_files/automation_rules.pl', 'r') as automation:
         lines = automation.readlines()
         for i in lines:
             line = i.strip()

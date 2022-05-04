@@ -7,8 +7,8 @@ class Webhook:
 
     send_state_int = {"on": "turn_on", "open": "turn_on", "close": "turn_off", "off": "turn_off"}
 
-    def __init__(self, token):
-        self.ws.connect("ws://172.17.89.135:8123/api/websocket")
+    def __init__(self, socket_address, token):
+        self.ws.connect(socket_address)
         print(self.ws.recv())
         self.ws.send('{"type": "auth", "access_token": "' + token + '"}')
         print(self.ws.recv())

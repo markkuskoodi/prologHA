@@ -2,5 +2,7 @@ supported_devices = [
     "sensor",
     "switch",
     "climate",
-    "light"
+    "light",
+    "person",
+    "group"
 ]

@@ -4,12 +4,13 @@ from rest_response.states import devices
 
 class Response:
     token = ""
-    url = "http://172.17.89.135:8123/api/services/"
+    url = ""
 
-    def __init__(self, token):
+    def __init__(self, url, token):
+        self.url = url
         self.token = token
 
-    def send_state(self, automation_res, data):
+    def send_state(self, automation_res):
         headers = {"Authorization": "Bearer " + self.token}
 
         response_fields = automation_res.strip().split(" ")

@@ -6,8 +6,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 # Token millega Webhook saab ennast Home-Assistantiga külge haakides ära authentida.
 token = ""
-hook = Webhook(token)
-rest = Response(token)
+hook = Webhook("ws://minix-debian:8123/api/websocket", token)
+rest = Response("http://minix-debian:8123/api/services/", token)
 
 # Loeme home-assistantist sisse kõik sensorid ja täiturid ning mapi need ära
 data = Data(hook.get_states())
@@ -17,7 +17,6 @@ data = Data(hook.get_states())
 scheduler = BackgroundScheduler()
 scheduler.add_job(invoke_prolog, 'interval', args=[data, rest], seconds=5, max_instances=5)
 scheduler.start()
-#invoke_prolog(data, rest)
 # Hakkame kuulama Home-Assistant's täiturite ning sensorite muudatusi
 hook.subscribe_states()
 

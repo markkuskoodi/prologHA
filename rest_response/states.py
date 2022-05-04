@@ -1,5 +1,5 @@
 devices = {
-    "switch": {"on": "turn_on", "off": "turn_off"},
+    "switch": {"on": "turn_on", "off": "turn_off", "up": "turn_on", "down": "turn_off"},
     "climate": {"data": {
         "mode": [
             "set_hvac_mode", "hvac_mode"
@@ -15,6 +15,8 @@ devices = {
         ]}},
     "light": {
         "on": "turn_on",
-        "off": "turn_off"
+        "off": "turn_off",
+        "up": "turn_on",
+        "down": "turn_off"
     }
 }

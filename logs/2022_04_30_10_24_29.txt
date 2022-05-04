@@ -1,0 +1,3 @@
+sensor.sm_t725_next_alarm: unavailable
+sensor.netatmo_smart_home_min_temp: unavailable
+sensor.netatmo_smart_home_max_temp: unavailable

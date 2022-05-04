@@ -1,0 +1,6 @@
+person.delta: unknown
+person.markkus: unknown
+sensor.unknown_motion_a_16: unknown
+sensor.sm_t725_next_alarm: unavailable
+sensor.netatmo_smart_home_min_temp: unavailable
+sensor.netatmo_smart_home_max_temp: unavailable

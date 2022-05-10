@@ -46,7 +46,6 @@ def invoke_prolog(Data_class, rest):
     prolog.consult("prolog_files/automation_final.pl")
     prolog.consult("prolog_files/init_preds.pl")
     prolog.consult("prolog_files/automation_rules.pl")
-    # prolog.consult("prolog_files/multiple_rules_exec_test.pl")
 
     print(predicates)
     for pred in predicates:

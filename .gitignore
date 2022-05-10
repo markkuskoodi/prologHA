@@ -1,4 +1,5 @@
 test.py
 venv/
 .idea/
-
+automation_results/
+logs/

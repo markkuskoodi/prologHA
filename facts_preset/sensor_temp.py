@@ -23,7 +23,7 @@ def light_sensor(device_id, device_attr, file):
 def temperature_sensor(device_id, device_attr, file):
     if float(device_attr[0]) < 10:
         file.write('temperature_sensor_status("' + device_id + '", ' + "low" + ').\n')
-    elif 15 <= float(device_attr[0]) <= 22:
+    elif 10 <= float(device_attr[0]) <= 22:
         file.write('temperature_sensor_status("' + device_id + '", ' + "medium" + ').\n')
     elif float(device_attr[0]) > 22:
         file.write('temperature_sensor_status("' + device_id + '", ' + "high" + ').\n')

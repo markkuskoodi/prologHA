@@ -20,17 +20,14 @@ class Response:
         if "switch" in device_id:
             req_data = {"entity_id": device_id}
             resp = requests.post(self.url + "switch/" + device.get(state), headers=headers, json=req_data)
-            #print(resp.text)
         elif "climate" in device_id:
             selected_mode = response_fields[2]
             selected_mode_arr = device.get("data").get(selected_mode)
             req_data = {"entity_id": device_id, selected_mode_arr[1]: state}
             resp = requests.post(self.url + "climate/" + selected_mode_arr[0], headers=headers, json=req_data)
-            #print(resp.text)
         elif "light" in device_id:
             req_data = {"entity_id": device_id}
             resp = requests.post(self.url + "light/" + device.get(state), headers=headers, json=req_data)
-            #print(resp.text)
 
 
 
